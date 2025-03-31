@@ -1,6 +1,7 @@
 // App.jsx
 import { useState, useEffect } from 'react';
 import "font-awesome/css/font-awesome.min.css";
+import MeImg from './pictures/me.jpeg'
 
 
 function App() {
@@ -131,7 +132,7 @@ function App() {
               <div className="absolute inset-4 bg-gray-800 rounded-full overflow-hidden">
                 {/* Replace with your image */}
                 <img 
-                  src="/api/placeholder/400/400" 
+                  src={MeImg}
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
@@ -148,7 +149,7 @@ function App() {
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/2 mb-10 md:mb-0">
               <img 
-                src='./src/pictures/me.jpeg'
+                src={MeImg}
                 alt="About Me" 
                 className="rounded-lg shadow-lg"
               />
