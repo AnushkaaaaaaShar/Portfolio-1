@@ -232,12 +232,13 @@ const SkillCard = ({ skill, icon }) => (
                   <p className="text-indigo-500">Available</p>
                 </div>
               </div>
-              <a 
-                href="#contact"
-                className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors font-medium inline-block"
-              >
-                Download CV
-              </a>
+                          <a 
+              href="/resume.pdf" 
+              download 
+              className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors font-medium inline-block"
+            >
+              Download CV
+            </a>
             </div>
           </div>
         </div>
@@ -396,28 +397,6 @@ function SectionTitle({ children }) {
   );
 }
 
-function ProjectCard({ title, category, image }) {
-  return (
-    <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg group">
-      <div className="relative overflow-hidden">
-        <img src={image} alt={title} className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" />
-        <div className="absolute inset-0 bg-indigo-600 bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="text-center">
-            <a href="#" className="w-12 h-12 rounded-full bg-white text-indigo-600 flex items-center justify-center mb-3 mx-auto">
-              <i className="fas fa-link"></i>
-            </a>
-            <h3 className="text-xl font-bold">{title}</h3>
-            <p className="text-gray-200">{category}</p>
-          </div>
-        </div>
-      </div>
-      <div className="p-4">
-        <h3 className="text-xl font-bold">{title}</h3>
-        <p className="text-gray-400">{category}</p>
-      </div>
-    </div>
-  );
-}
 
 
 
