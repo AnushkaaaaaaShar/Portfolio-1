@@ -2,12 +2,52 @@
 import { useState, useEffect } from 'react';
 import "font-awesome/css/font-awesome.min.css";
 import MeImg from './pictures/me.jpeg'
+import pro1 from './pictures/pt.png'
+import pro2 from './pictures/asia48.png'
+import pro3 from './pictures/ui.png'
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs } from 'react-icons/fa';
+import { SiTailwindcss, SiMongodb, SiGraphql } from 'react-icons/si';
 
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+
+  const projects = [
+    {
+      title: "Pomodoro Timer",
+      category: "React App",
+      image: pro1 , 
+      link: "https://evolve-pomodoro-timer.vercel.app/"
+    },
+    {
+      title: "Asia 48",
+      category: "Web Development",
+      image: pro2,
+      link: "https://iamahens.github.io/Asia48/"
+    },
+    {
+      title: "Twitter UI Clone",
+      category: "UI/UX",
+      image: pro3,
+      link: "https://clone-x-ui.netlify.app/"
+    },
+
+  ];
+  
+  const ProjectCard = ({ title, category, image, link }) => (
+    <a href={link} target="_blank" rel="noopener noreferrer">
+      <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+        <img src={image} alt={title} className="w-full h-48 object-cover" />
+        <div className="p-4">
+          <h3 className="text-lg font-semibold">{title}</h3>
+          <p className="text-sm text-gray-600">{category}</p>
+        </div>
+      </div>
+    </a>
+  );
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +69,27 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
+
+
+const skills = [
+  { name: 'HTML5', icon: <FaHtml5 className="text-orange-500 text-3xl" /> },
+  { name: 'CSS3', icon: <FaCss3Alt className="text-blue-500 text-3xl" /> },
+  { name: 'JavaScript', icon: <FaJs className="text-yellow-400 text-3xl" /> },
+  { name: 'React', icon: <FaReact className="text-cyan-400 text-3xl" /> },
+  { name: 'Node.js', icon: <FaNodeJs className="text-green-600 text-3xl" /> },
+  { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-sky-400 text-3xl" /> },
+  { name: 'MongoDB', icon: <SiMongodb className="text-green-500 text-3xl" /> },
+  { name: 'GraphQL', icon: <SiGraphql className="text-pink-500 text-3xl" /> },
+];
+
+const SkillCard = ({ skill, icon }) => (
+  <div className="bg-white dark:bg-gray-900 rounded-xl p-6 flex flex-col items-center shadow-md hover:shadow-xl transition">
+    <div className="mb-4">{icon}</div>
+    <h4 className="text-lg font-semibold text-center">{skill}</h4>
+  </div>
+);
+
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-900'}`}>
       {/* Navbar */}
@@ -45,11 +106,7 @@ function App() {
               onClick={() => setDarkMode(!darkMode)}
               className="p-2 rounded-full hover:bg-gray-800 transition-colors"
             >
-              {darkMode ? (
-                <i className="fas fa-sun text-yellow-300"></i>
-              ) : (
-                <i className="fas fa-moon text-indigo-500"></i>
-              )}
+              
             </button>
           </div>
 
@@ -59,11 +116,7 @@ function App() {
               onClick={() => setDarkMode(!darkMode)}
               className="p-2 mr-4 rounded-full hover:bg-gray-800 transition-colors"
             >
-              {darkMode ? (
-                <i className="fas fa-sun text-yellow-300"></i>
-              ) : (
-                <i className="fas fa-moon text-indigo-500"></i>
-              )}
+             
             </button>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -113,7 +166,7 @@ function App() {
                 Contact Me
               </a>
               <a 
-                href="#projects" 
+                href="https://github.com/AnushkaaaaaaShar" 
                 className="px-6 py-3 border border-indigo-600 text-indigo-500 hover:bg-indigo-600 hover:text-white rounded-lg transition-colors font-medium"
               >
                 View Work
@@ -157,7 +210,7 @@ function App() {
             <div className="md:w-1/2 md:pl-10">
               <h3 className="text-2xl font-bold mb-4">My Journey</h3>
               <p className="text-gray-400 mb-6">
-                I'm a passionate Full Stack Developer with 5+ years of experience building 
+                I'm a passionate Full Stack Developer with 2+ years of experience building 
                 beautiful, functional, and user-friendly websites and applications. I specialize in 
                 React, Node.js, and modern web technologies.
               </p>
@@ -195,14 +248,15 @@ function App() {
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <SectionTitle>My Projects</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <ProjectCard 
-                key={item}
-                title={`Project ${item}`}
-                category="Web Development"
-                image={`/api/placeholder/600/400?text=Project${item}`}
-              />
-            ))}
+          {projects.map((project, index) => (
+  <ProjectCard 
+    key={index}
+    title={project.title}
+    category={project.category}
+    image={project.image}
+    link={project.link}
+  />
+))}
           </div>
         </div>
       </section>
@@ -212,9 +266,10 @@ function App() {
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <SectionTitle>My Skills</SectionTitle>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js', 'Tailwind CSS', 'MongoDB', 'GraphQL'].map((skill) => (
-              <SkillCard key={skill} skill={skill} />
-            ))}
+          {skills.map((skill) => (
+  <SkillCard key={skill.name} skill={skill.name} icon={skill.icon} />
+))}
+
           </div>
         </div>
       </section>
@@ -231,9 +286,9 @@ function App() {
                 However, if you have other request or question, don't hesitate to contact me.
               </p>
               <div className="space-y-6">
-                <ContactInfo icon="fas fa-map-marker-alt" text="Your Address, City, Country" />
-                <ContactInfo icon="fas fa-envelope" text="your.email@example.com" />
-                <ContactInfo icon="fas fa-phone" text="+1 234 567 890" />
+                <ContactInfo icon="fas fa-map-marker-alt" text="Uttam Nagar West, New Delhi, India" />
+                <ContactInfo icon="fas fa-envelope" text="anushka.81sharma@gmail.com" />
+                <ContactInfo icon="fas fa-phone" text="+91 8130353576" />
               </div>
             </div>
             <div className="md:w-1/2">
@@ -282,7 +337,7 @@ function App() {
             <SocialIcon icon="fab fa-dribbble" />
           </div>
           <p className="text-gray-400">
-            © {new Date().getFullYear()} Your Name. All rights reserved.
+            © {new Date().getFullYear()} Anushka Sharma. All rights reserved.
           </p>
         </div>
       </footer>
@@ -364,16 +419,7 @@ function ProjectCard({ title, category, image }) {
   );
 }
 
-function SkillCard({ skill }) {
-  return (
-    <div className="bg-gray-800 rounded-lg p-6 text-center hover:bg-indigo-600 transition-colors">
-      <div className="text-4xl mb-3">
-        <i className="fab fa-react"></i>
-      </div>
-      <h3 className="text-lg font-bold">{skill}</h3>
-    </div>
-  );
-}
+
 
 function ContactInfo({ icon, text }) {
   return (
